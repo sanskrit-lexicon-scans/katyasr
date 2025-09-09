@@ -125,21 +125,20 @@ Note the first line (column names) is ignored
    
   # vpstr  # format consistent with format of filename of scanned page
   self.vpstr = parm_vpstr_format % (self.page)
-  self.vipstr = parm_vpstr_format % (self.ipage)
+
  def todict(self):
   #if self.fromvx == None:
   # self.fromx = ''
   e = {
-   #'page':int(self.page),
-   #'adhy':int(self.adhy),
-   #'kand':int(self.kand),
-   #'v1':int(self.fromv),
-   #'v2':int(self.tov),
+   'page':int(self.page),
+   'adhy':int(self.adhy),
+   'kand':int(self.kand),
+   'v1':int(self.fromv),
+   'v2':int(self.tov),
    #x1':self.fromvx,
    #x2':self.tovx,
    'ipage':self.ipage,
-   'vp':self.vpstr,
-   #'vip':self.vipstr
+   'vp':self.vpstr
   }
   return e
 
@@ -233,39 +232,11 @@ def check1(pagerecs):
 
  print("check1 finds no problems")
 
-def remove_dups(pagerecs):
- # return pagerecs
- recs = []
- ndup = 0  # remove duplicate vi,vip
- ndupa = 0
- prev = None
- for pagerec in pagerecs:
-  if prev == None:
-   recs.append(pagerec)
-   prev = pagerec
-  elif (pagerec.vpstr == prev.vpstr) and (pagerec.vipstr == prev.vipstr):
-   ndup = ndup + 1 
-   #print('Duplicate # %s removed' % ndup)
-   #print('prev:', prev.line)
-   #print(' dup:', pagerec.line)
-  elif pagerec.vipstr == prev.vipstr:  # different vpstr, same vipstr
-   pagerec.vipstr = pagerec.vipstr + 'a'  
-   ndupa = ndupa + 1  # skip duplicate
-   recs.append(pagerec)
-   prev = pagerec
-  else:
-   recs.append(pagerec)
-   prev = pagerec
- print('%s duplicate (vp,vip) lines removed' % ndup)
- print('%s duplicate vip lines adjusted' % ndupa)
- return recs
-
 if __name__ == "__main__":
  filein=sys.argv[1]  # tab-delimited index file
  fileout = sys.argv[2]
  pagerecs = init_pagerecs(filein)
- pagerecs1 = remove_dups(pagerecs)
- outrecs = make_js(pagerecs1)
+ outrecs = make_js(pagerecs)
  write_recs(fileout,outrecs)
  check1(pagerecs)
  

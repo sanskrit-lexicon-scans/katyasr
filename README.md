@@ -16,7 +16,13 @@ Provides access to pages based on 3 numbers:
 Example: https://sanskrit-lexicon-scans.github.io/katyasr/app1/?1,3,1
 
 ## app0
-Provides access to pages from based on one number: NNNN (internal page).
-NNNN is in range 0023 to 1136
+Provides access to pages from based on internal page number 1-1110
 
-Example: https://sanskrit-lexicon-scans.github.io/katyasr/app0/?0100
+Example: https://sanskrit-lexicon-scans.github.io/katyasr/app0/?100
+
+## app2
+Provides access to pages from based on
+- internal page number 1-1110
+- line-number within page.
+
+Example: https://sanskrit-lexicon-scans.github.io/katyasr/app2/?100,10

@@ -9,8 +9,8 @@ function makelink(indexobj,txt) {
  let base = href.replace(/app1.*$/,'');
  //console.log(base);
  let ipage = indexobj.ipage // an integer
- let ipstr = ipage.toString().padStart(4,'0');
- let newsearch = `app0/?${ipstr}`;
+ //let ipstr = ipage.toString().padStart(4,'0');
+ let newsearch = `app0/?${ipage}`;
  let newhref = base + newsearch;
  let html = `<a class="nppage" href="${newhref}"><span class="nppage">${txt}</span></a>`;
  return html;
